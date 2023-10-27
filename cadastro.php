@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <?php include '../assets/header.inc.php'; ?>
+    <?php include 'assets/header.inc.php'; ?>
     <main>
         <div class="container-fluid">
 
@@ -40,26 +40,6 @@
                             <label for="senha">Senha</label>
                             <input name="txtsenha" type="password" class="form-control" required id="senha">
                         </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="adm" name="usr_lvl" value="admin">
-                            <label for="adm">Admin</label><br>
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="staff" name="usr_lvl" value="staff">
-                            <label for="staff">Funcionário</label><br>
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <input type="radio" id="usr" name="usr_lvl" value="usr">
-                            <label for="usr">Usuário</label>
-                        </div>
-
 
                         <button type="submit" class="btn btn-lg btn-enter">
 
