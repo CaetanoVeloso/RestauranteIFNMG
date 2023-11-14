@@ -119,6 +119,24 @@ class Util
         //agora será feito um select
         //as duas páginas serão criadas na próxima aula
     }
-    public static function inserirNoticia($titulo, $conteudo){
+    public static function inserirNoticia($titulo, $sub, $conteudo){
+        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
+        require_once SITE_ROOT . 'classes/autoloader.class.php';
+        require_once SITE_ROOT . 'classes/util.class.php';
+        require_once SITE_ROOT . 'classes/r.class.php';
+        R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
+        $noticia = R::dispense('noticias');
+        $noticia->titulo = $titulo;
+        $noticia->sub = $sub;
+        $noticia->conteudo = $conteudo;
+        R::store($noticia);
+        header('refresh:5;url=noticias.php');
+        echo '<h1>Cadastro efetuado. Redirecionando...</h1>';
+    }
+    public static function buscarNoticia(){
+        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
+        require_once SITE_ROOT . 'classes/autoloader.class.php';
+        require_once SITE_ROOT . 'classes/util.class.php';
+        
     }
 }

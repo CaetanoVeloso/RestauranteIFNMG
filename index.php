@@ -13,6 +13,26 @@
     <?php include 'assets/header.inc.php'; ?>
     <main>
         <h1>Simulação</h1>
+        <?php 
+        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
+        require_once SITE_ROOT . 'classes/autoloader.class.php';
+        require_once SITE_ROOT . 'classes/util.class.php';
+        $count = 1;
+        R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
+        while ($count <= 10){
+            $noticia = R::findOne('noticias', 'id = ?', [$count]);
+            echo"
+            <div>
+            <div style='background-color: gray; width:200px; height:200px'></div>
+            <a href='details.php?id=".$count."'
+            <p>".$noticia['titulo']."</p>
+            </a>
+            <p>".$noticia['sub']."</p>
+            </div>";
+            $count = $count + 1;
+
+        }
+        ?>
         
         <div>
             <div style="background-color: gray; width:200px; height:200px"></div>
