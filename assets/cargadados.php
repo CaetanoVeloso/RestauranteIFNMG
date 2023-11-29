@@ -21,8 +21,8 @@ R::store($usuario1);
 
 $usuario2 = R::dispense('usuarios');
 // Adicionando um usuario
-$usuario2->name = 'usr';
-$usuario2->email = 'usr@fla.com';
+$usuario2->name = 'user';
+$usuario2->email = 'user@fla.com';
 $usuario2->password = md5('12345' . 'ifnmg');
 $usuario2->user_level = 'user';
 R::store($usuario2);

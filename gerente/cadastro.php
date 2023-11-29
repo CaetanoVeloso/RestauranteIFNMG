@@ -15,7 +15,7 @@
 	
 	session_start();
 	
-    if(empty($_SESSION['user_level'])||$_SESSION['user_level'] != 'admin'){
+    if(empty($_SESSION['user_level']) || $_SESSION['user_level'] != 'staff' && $_SESSION['user_level'] != 'admin'){
         header('location:..\index.php');
         //sessão vazia ou não for adm, volta pro index
     }
@@ -52,31 +52,6 @@
                             <label for="senha">Senha</label>
                             <input name="txtsenha" type="password" class="form-control" required id="senha">
                         </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="adm" name="usr_lvl" value="admin">
-                            <label for="adm">Admin</label><br>
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="staff" name="usr_lvl" value="staff">
-                            <label for="staff">Gerente</label><br>
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="caixa" name="usr_lvl" value="caixa">
-                            <label for="staff">Caixa</label><br>
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="radio" id="user" name="usr_lvl" value="user">
-                            <label for="usr">Usuário</label>
-                        </div>
-
 
                         <button type="submit" class="btn btn-lg btn-enter">
 

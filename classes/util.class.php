@@ -64,30 +64,11 @@ class Util
     }
     public static function inserirUsuario($name, $email, $password, $usr_lvl)
     {
-        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
-        require_once SITE_ROOT . 'classes/autoloader.class.php';
-        require_once SITE_ROOT . 'classes/util.class.php';
-        require_once SITE_ROOT . 'classes/r.class.php';
+        require_once(__DIR__ . '\..\classes\autoloader.class.php');
+        require_once(__DIR__ . '\..\classes\util.class.php');
+        require_once(__DIR__ . '\..\classes/r.class.php');
         R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
-        //a variável global $_POST é usada pois o método do formulário é post.
-
-        //echo $nome .'<br>';
-        //echo $email .'<br>';
-        //echo $senha .'<br>';
-        //echo $end .'<br>';
-        //echo $cidade .'<br>';
-        //echo $cep .'<br>'; 
-
-        // $consulta = $cn->query("select ds_email from tbl_usuario where ds_email='$email'");
-        // $exibe = $consulta->fetch(PDO::FETCH_ASSOC);
-        // if ($consulta->rowCount() == 1) {
-        //    header('location:erro1.php');
-        // } else {
-        //$db = R::findOne('usuarios', 'email = ?', [$email]);
-        //$dbmail = $db['email'];
-        //echo "'$dbmail'";
-        //echo "<h1>Você '$name','$email','$password','$usr_lvl'</h1>";
-        //$email != R::findOne('usuarios', 'email = ?', [$email])['email']
+        
         if (R::findOne('usuarios', 'email = ?', [$email]) == null) {
             session_start();
             if (empty($_SESSION['user_level'])||$_SESSION['user_level'] != 'admin') {
@@ -119,11 +100,39 @@ class Util
         //agora será feito um select
         //as duas páginas serão criadas na próxima aula
     }
+    public static function editarUsuario($id, $name, $email, $password, $usr_lvl)
+    {
+        require_once(__DIR__ . '\..\classes\autoloader.class.php');
+        require_once(__DIR__ . '\..\classes\util.class.php');
+        require_once(__DIR__ . '\..\classes/r.class.php');
+        R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
+        session_start();
+        if (empty($_SESSION['user_level']) || $_SESSION['user_level'] != 'admin') {
+            $usuario = R::dispense('usuarios');
+            $usuario->id = $id;
+            $usuario->name = $name;
+            $usuario->email = $email;
+            $usuario->password = md5($password . 'ifnmg');
+            $usuario->user_level = 'user';
+            R::store($usuario);
+            header('refresh:5;url=index.php');
+            echo '<h1>Cadastro atualizado. Redirecionando...</h1>';
+        } else {
+            $usuario = R::dispense('usuarios');
+            $usuario->id = $id;
+            $usuario->name = $name;
+            $usuario->email = $email;
+            $usuario->password = md5($password . 'ifnmg');
+            $usuario->user_level = $usr_lvl;
+            R::store($usuario);
+            header('refresh:5;url=cadastro.php');
+            echo '<h1>Cadastro atualizado. Redirecionando...</h1>';
+        }
+    }
     public static function inserirNoticia($titulo, $sub, $conteudo){
-        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
-        require_once SITE_ROOT . 'classes/autoloader.class.php';
-        require_once SITE_ROOT . 'classes/util.class.php';
-        require_once SITE_ROOT . 'classes/r.class.php';
+        require_once(__DIR__ . '\..\classes\autoloader.class.php');
+        require_once(__DIR__ . '\..\classes\util.class.php');
+        require_once(__DIR__ . '\..\classes/r.class.php');
         R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
         $noticia = R::dispense('noticias');
         $noticia->titulo = $titulo;
@@ -134,9 +143,10 @@ class Util
         echo '<h1>Cadastro efetuado. Redirecionando...</h1>';
     }
     public static function buscarNoticia(){
-        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
-        require_once SITE_ROOT . 'classes/autoloader.class.php';
-        require_once SITE_ROOT . 'classes/util.class.php';
+        require_once(__DIR__ . '\..\classes\autoloader.class.php');
+        require_once(__DIR__ . '\..\classes\util.class.php');
+        require_once(__DIR__ . '\..\classes/r.class.php');
         
     }
+    
 }
