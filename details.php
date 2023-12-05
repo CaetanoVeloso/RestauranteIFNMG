@@ -8,9 +8,9 @@
 <body>
     <?php 
     if (isset($_GET['id'])){
-        define("SITE_ROOT", 'C:\xampp\htdocs\RestauranteIFNMG/');
-        require_once SITE_ROOT . 'classes/autoloader.class.php';
-        require_once SITE_ROOT . 'classes/util.class.php';
+        require_once(__DIR__ . '\classes\autoloader.class.php');
+        require_once(__DIR__ . '\classes\util.class.php');
+        require_once(__DIR__ . '\classes/r.class.php');
         R::setup('mysql:host=127.0.0.1;dbname=sislogin', 'root', '');
         $noticia = R::findOne('noticias', 'id = ?', [$_GET['id']]);
         echo '<h1>'. $noticia['titulo'] .'</h1>';

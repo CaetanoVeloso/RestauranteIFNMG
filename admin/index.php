@@ -28,7 +28,7 @@
         <br>
         <a href="lista_usuarios.php"> Lista de Usuários </a>
         <br>
-        <a href="lista_usuarios.php"> Lista de Usuários </a>
+        <a href="noticias.php">noticias</a>
         <br>
         <div>
             <div style="background-color: gray; width:200px; height:200px"></div>
